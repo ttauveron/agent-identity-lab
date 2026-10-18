@@ -1,0 +1,18 @@
+version: 1.3.17
+cache: true
+registration:
+  socialLogins: [openid]
+endpoints:
+  custom:
+    - name: Agent Lab
+      apiKey: unused
+      baseURL: http://primary-agent:8000/v1
+      headers:
+        Authorization: 'Bearer {{LIBRECHAT_OPENID_ACCESS_TOKEN}}'
+        X-Conversation-ID: '{{LIBRECHAT_BODY_CONVERSATIONID}}'
+      models:
+        default: [finance-lab]
+        fetch: true
+      titleConvo: false
+      summarize: false
+      modelDisplayLabel: Agent Lab

@@ -1,0 +1,7 @@
+{
+  "name": "finance-agent-delegate-users",
+  "type": "scope",
+  "resourceType": "Users",
+  "scopes": ["delegate"],
+  "policies": ["finance-agent-can-delegate"]
+}

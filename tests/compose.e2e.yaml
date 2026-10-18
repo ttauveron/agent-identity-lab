@@ -1,0 +1,22 @@
+# Test-only processes: deterministic tool choice, production authentication/routes.
+services:
+  primary-agent:
+    command: [python, /src/tests/e2e_runtime.py, primary]
+    environment:
+      PYTHONPATH: /src
+      OTEL_SDK_DISABLED: "true"
+      PRIMARY_SESSION_DB: /tmp/e2e-primary.sqlite3
+      PRIMARY_AGENT_DESTINATIONS: '{"finance-agent":{"model":"finance-lab","url":"http://finance-agent:8000/a2a","actor_scope":"finance-agent-audience"},"reporting-agent":{"model":"reporting-lab","url":"http://unused-reporting:8000/a2a","actor_scope":"reporting-agent-audience"}}'
+    volumes:
+      - .:/src:ro
+  finance-agent:
+    command: [python, /src/tests/e2e_runtime.py, finance]
+    environment:
+      PYTHONPATH: /src
+      OTEL_SDK_DISABLED: "true"
+      FINANCE_SESSION_DB: /tmp/e2e-finance.sqlite3
+    volumes:
+      - .:/src:ro
+  librechat:
+    volumes:
+      - .:/src:ro

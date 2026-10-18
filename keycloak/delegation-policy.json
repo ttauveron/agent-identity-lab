@@ -1,0 +1,6 @@
+{
+  "name": "finance-agent-can-delegate",
+  "type": "client",
+  "logic": "POSITIVE",
+  "clients": ["${ACTOR_CLIENT_UUID}"]
+}
